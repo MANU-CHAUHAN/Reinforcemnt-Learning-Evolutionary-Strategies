@@ -53,7 +53,7 @@ if __name__ == '__main__':
     random.seed(101)
     np.random.seed(101)
 
-    env = gym.make('FrozenLake-v0') # Solving FrozenLake environment here
+    env = gym.make('FrozenLake-v0')  # Solving FrozenLake environment here
     env.seed(0)
     n_policy = 100
     n_steps = 20
@@ -74,16 +74,15 @@ if __name__ == '__main__':
 
         policy_population = top_5_policies + mutated
 
-        policy_scores = [evaluate_policy(env, policy) for policy in policy_population]
+    policy_scores = [evaluate_policy(env, policy) for policy in policy_population]
 
-        fittest_policy = policy_population[np.argmax(policy_scores)]
+    fittest_policy = policy_population[np.argmax(policy_scores)]
 
-        end = time.time()
+    end = time.time()
 
-        print("\nBest policy found out in time: %f  having score:%f".format((end - start), fittest_policy))
+    print("\nBest policy found out in time: %f  having score:%f".format((end - start), fittest_policy))
 
-        print("\n\n\n\nEvaluation\n")
-        for _ in range(200):
-            run_episode(env, fittest_policy)
-        env.close()
-
+    print("\n\n\n\nEvaluation\n")
+    for _ in range(200):
+        run_episode(env, fittest_policy)
+    env.close()
